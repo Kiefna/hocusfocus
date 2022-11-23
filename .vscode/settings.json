@@ -3,5 +3,11 @@
         "editor.insertSpaces": false,
         "editor.tabSize": 4,
         "editor.autoIndent": "advanced"
+    },
+    "workbench.colorTheme": "Imba Dark",
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#3c557a",
+        "titleBar.activeBackground": "#3c557a",
+        "titleBar.activeForeground": "#F8FBF7"
     }
 }

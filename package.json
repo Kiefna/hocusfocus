@@ -1,11 +1,50 @@
 {
-    "name": "imba-base-template",
-    "scripts": {
-        "start": "imba -w server.imba",
-        "build": "imba build server.imba"
-    },
-    "dependencies": {
-        "express": "^4.17.1",
-        "imba": "^2.0.0-alpha.212"
-    }
+  "name": "hocus-focus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "seed": "edgedb query --file=dbschema/seeds/initial.edgeql",
+    "test:seed": "EDGEDB_DATABASE=test edgedb query --file=dbschema/seeds/test.edgeql",
+    "migrate": "edgedb migrate",
+    "makemigrations": "edgedb migration create",
+    "test:migrate": "(./dbschema/setup_test_db.sh || true) && EDGEDB_DATABASE=test edgedb migrate",
+    "start-for-test": "EDGEDB_DATABASE=test PORT=3003 imba src/server.imba",
+    "test:headed": "playwright test --headed",
+    "test": "playwright test",
+    "test:codegen": "npx playwright codegen http://localhost:3003",
+    "codegen": "concurrently \"npm:start-for-test\" \"npm:test:codegen\"",
+    "start": "imba -w src/server.imba",
+    "start:instance": "edgedb instance start perfect_stack",
+    "build": "imba build src/server.imba"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiefna/HocusFocus-imba.git"
+  },
+  "author": "",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.2",
+    "@fortawesome/free-solid-svg-icons": "^6.1.2",
+    "@inertiajs/inertia": "^0.10.1",
+    "@types/express-session": "^1.17.4",
+    "@types/lodash": "^4.14.172",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.2.1",
+    "debug": "^4.3.2",
+    "edgedb": "^0.21.3",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.2",
+    "imba": "^2.0.0-alpha.208",
+    "imba-inertia-adapter": "^2.0.0-alpha.211",
+    "lodash": "^4.17.21",
+    "multer": "^1.4.5-lts.1",
+    "typescript": "4.3.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.14.1",
+    "autoprefixer": "^10.3.2"
+  }
 }
