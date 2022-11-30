@@ -1,2 +1,1 @@
-web: start-edgedb npm start
-worker: start-edgedb npm start-worker
+web: npm start
