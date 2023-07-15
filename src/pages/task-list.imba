@@ -8,9 +8,9 @@ tag task-list
 	
 	def setup
 		console.log "props", self.props
-		self.form = new Form
-			task: 'mail@mail.com'
-			count: 'password'
+		self.input = new Form
+			task: ''
+			count: '1'
 			completed?: false
 
 	get currentList 
@@ -20,6 +20,8 @@ tag task-list
 		span
 			c:#C8CFF2 fs:20px
 		input
+			va: middle
+			fs: 18px
 			&::placeholder
 				color: #A5ADCE
 				fs: 18px
@@ -47,8 +49,8 @@ tag task-list
 		<div[h:468px bgc:#51576D pl: 35px pt:30px]>
 			for item in currentList
 				<task props={...item}>
-			<input type="checkbox" bind=form.data.completed? .checkbox-input id="checkbox">
+			<input type="checkbox" bind=input.data.completed? .checkbox-input id="checkbox">
 			<label for="checkbox">
 				<span .checkbox> 
-			<input[w:200px ml:20px mt:-7px c:#A5ADCE bgc:#51576D] placeholder="Enter a task here...">
+			<input[w:200px ml:20px mt:-7px c:#A5ADCE bgc:#51576D rd:5px bgc@focus:#404459 p@focus:5px] bind=input.data.task placeholder="Enter a task here...">
 
